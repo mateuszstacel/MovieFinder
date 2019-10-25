@@ -25,6 +25,8 @@
 
   <ItemGroup>
     <Folder Include="app\src\ui\atoms\" />
+    <Folder Include="app\src\ui\molecules\" />
+    <Folder Include="app\src\ui\templates\" />
     <Folder Include="app\src\ui\organism\" />
     <Folder Include="app\src\ui\pages\" />
     <Folder Include="Models\" />
