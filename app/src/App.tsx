@@ -1,13 +1,15 @@
-import React from 'react';
+import React, {useLayoutEffect, useState} from 'react';
 import 'bulma/css/bulma.css'
+import {HomePage} from './ui/pages/homePage'
 
 const App: React.FC = () => {
+
+  
+
     return (
-     
-        <div>
-            <h1>Hello World!</h1>
-        </div>
-   
+        <div >
+       <HomePage/>
+   </div>
   );
 }
 
