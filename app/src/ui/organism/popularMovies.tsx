@@ -2,6 +2,7 @@ import React, { useState, useEffect, useLayoutEffect } from 'react'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import styled from 'styled-components'
+import {Link} from 'react-router-dom'
 
 interface IPopularMovies {
     id: number,
@@ -68,6 +69,7 @@ render () {
 
 
     return(
+       
         <div className={this.props.className}>
             <label className="Label">Martii</label>
 <Carousel responsive={responsive}
@@ -75,12 +77,19 @@ render () {
  draggable={false}
  infinite={true}>
         {this.state.data.map( (item: IPopularMovies) => {
-            return <div className="Movie">
-                      <img src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}/>              
-                 </div>
+            return(
+                <div  key={item.id}  className="Movie">
+            <Link to={`/movies-library/movie/${item.id}`}>
+            
+                      <img key={item.id} src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}/>              
+              
+                 </Link>
+                    </div>
+            )
         })}
 </Carousel>
 </div>
+
     )
 }
 }
