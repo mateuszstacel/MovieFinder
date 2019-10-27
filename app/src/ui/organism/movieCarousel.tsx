@@ -4,27 +4,29 @@ import 'react-multi-carousel/lib/styles.css';
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 
-interface IPopularMovies {
+interface IKidsMovies {
     id: number,
     title: string,
     poster_path: string
 }
 
-interface IResponsePopularMovies {
+interface IResponseKidsMovies {
     page: number,
     total_results: number,
     total_pages: number,
-    results: IPopularMovies[]
+    results: IKidsMovies[]
 }
 
-interface IPopularMoviesProps {
+interface IKidsdMoviesProps {
     className?: string;
+    movieType: string,
+    title: string,
 }
 
-interface IIPopularMoviesState {
-    data: IPopularMovies[]
+interface ITopKidsMoviesState {
+    data: IKidsMovies[]
 }
- class PopularMoviesComponent extends React.Component<IPopularMoviesProps, IIPopularMoviesState> {
+ class PopularMoviesComponent extends React.Component<IKidsdMoviesProps, ITopKidsMoviesState> {
 
     constructor(props: any) {
         super(props);
@@ -37,11 +39,11 @@ interface IIPopularMoviesState {
     }
 
    GetMovies() {
-        fetch("https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=9f471da832491516e75802f839e2bae2")
+        fetch(`https://api.themoviedb.org/3/discover/movie?${this.props.movieType}&api_key=9f471da832491516e75802f839e2bae2`)
         .then(res => {
             debugger;
             return res.json()
-        }).then((response: IResponsePopularMovies) =>{
+        }).then((response: IResponseKidsMovies) =>{
            this.setState({data: response.results})
         })
     }
@@ -69,32 +71,30 @@ render () {
 
 
     return(
-       
         <div className={this.props.className}>
-            <label className="Label">Martii</label>
+            <label className="Label">{this.props.title}</label>
 <Carousel responsive={responsive}
  swipeable={false}
  draggable={false}
  infinite={true}>
-        {this.state.data.map( (item: IPopularMovies) => {
-            return(
+        {this.state.data.map( (item: IKidsMovies) => {
+            return (
                 <div  key={item.id}  className="Movie">
-            <Link to={`/movies-library/movie/${item.id}`}>
-            
-                      <img key={item.id} src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}/>              
-              
-                 </Link>
-                    </div>
+                <Link to={`/movies-library/movie/${item.id}`}>
+                
+                          <img key={item.id} src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}/>              
+                  
+                     </Link>
+                        </div>
             )
         })}
 </Carousel>
 </div>
-
     )
 }
 }
 
-export const PopularMovies = styled(PopularMoviesComponent)`
+export const CarouselComponent = styled(PopularMoviesComponent)`
 font-family: "Times New Roman";
 background: black;
 
@@ -105,7 +105,6 @@ background: black;
     font: bold;
 }
 .Movie {
-    width: 350px;
-  
+    width: 300px;
 }
 `

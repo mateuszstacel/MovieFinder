@@ -1,13 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import {MainComponent} from '../templates/MainComponent'
-import {PopularMovies} from '../organism/popularMovies'
-import {TopRatedMovies} from '../organism/topRatedMovie'
-import {KidsMovies} from '../organism/kidsMovie'
-import {ScienceFictionsMovies} from '../organism/scienceFictionMove'
+import {CarouselComponent} from '../organism/movieCarousel'
 
 interface IHomePage {
     className?: string;
+}
+
+enum KindsOfMovies {
+    kids = "certification_country=US&certification.lte=G&sort_by=popularity.desc",
+    popular = "sort_by=popularity.desc",
+    comedies = "with_genres=35&with_cast=23659&sort_by=revenue.desc",
+    topRated = "certification_country=US&certification=R&sort_by=vote_average.desc"
+}
+
+enum MoviesTitles {
+    kids = "Kids",
+    popular = "Pupular",
+    topRated = "Top Rated",
+    comedies = " Science Fiction"
 }
 
 const Component: React.FunctionComponent<IHomePage> = (props: IHomePage) => {
@@ -15,10 +26,10 @@ const Component: React.FunctionComponent<IHomePage> = (props: IHomePage) => {
         return(       
         <div className={props.className}>
             <MainComponent/>
-            <PopularMovies/>
-            <KidsMovies/>
-            <ScienceFictionsMovies/>
-            <TopRatedMovies/>
+            <CarouselComponent title={MoviesTitles.popular} movieType={KindsOfMovies.popular}/>
+            <CarouselComponent title={MoviesTitles.kids} movieType={KindsOfMovies.kids}/>
+            <CarouselComponent title={MoviesTitles.topRated} movieType={KindsOfMovies.topRated}/>
+            <CarouselComponent title={MoviesTitles.comedies} movieType={KindsOfMovies.comedies}/>
         </div>
         )
     }
