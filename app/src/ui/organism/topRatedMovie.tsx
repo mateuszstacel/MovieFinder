@@ -3,27 +3,27 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import styled from 'styled-components'
 
-interface IPopularMovies {
+interface ITopRatedMovies {
     id: number,
     title: string,
     poster_path: string
 }
 
-interface IResponsePopularMovies {
+interface IResponseTopRatedMovies {
     page: number,
     total_results: number,
     total_pages: number,
-    results: IPopularMovies[]
+    results: ITopRatedMovies[]
 }
 
-interface IPopularMoviesProps {
+interface ITopRatedMoviesProps {
     className?: string;
 }
 
-interface IIPopularMoviesState {
-    data: IPopularMovies[]
+interface ITopRatedMoviesState {
+    data: ITopRatedMovies[]
 }
- class PopularMoviesComponent extends React.Component<IPopularMoviesProps, IIPopularMoviesState> {
+ class PopularMoviesComponent extends React.Component<ITopRatedMoviesProps, ITopRatedMoviesState> {
 
     constructor(props: any) {
         super(props);
@@ -36,11 +36,11 @@ interface IIPopularMoviesState {
     }
 
    GetMovies() {
-        fetch("https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=9f471da832491516e75802f839e2bae2")
+        fetch("https://api.themoviedb.org/3/discover/movie?certification_country=US&certification=R&sort_by=vote_average.desc&api_key=9f471da832491516e75802f839e2bae2")
         .then(res => {
             debugger;
             return res.json()
-        }).then((response: IResponsePopularMovies) =>{
+        }).then((response: IResponseTopRatedMovies) =>{
            this.setState({data: response.results})
         })
     }
@@ -69,12 +69,12 @@ render () {
 
     return(
         <div className={this.props.className}>
-            <label className="Label">Martii</label>
+            <label className="Label">Top Rated</label>
 <Carousel responsive={responsive}
  swipeable={false}
  draggable={false}
  infinite={true}>
-        {this.state.data.map( (item: IPopularMovies) => {
+        {this.state.data.map( (item: ITopRatedMovies) => {
             return <div className="Movie">
                       <img src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}/>              
                  </div>
@@ -85,7 +85,7 @@ render () {
 }
 }
 
-export const PopularMovies = styled(PopularMoviesComponent)`
+export const TopRatedMovies = styled(PopularMoviesComponent)`
 font-family: "Times New Roman";
 background: black;
 
@@ -97,6 +97,5 @@ background: black;
 }
 .Movie {
     width: 350px;
-  
 }
 `

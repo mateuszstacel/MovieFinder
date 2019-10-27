@@ -4,7 +4,6 @@ import Background from '../../../public/images/mainBackground.jpg'
 import {NavBar} from './navbar'
 import {InputComponent} from '../atoms/input'
 import {Title} from '../templates/title'
-import {Movies} from '../organism/popularMovies'
 interface IMainComponent {
     className?: string
 }

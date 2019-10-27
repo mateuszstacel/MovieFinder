@@ -4,7 +4,8 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-image: radial-gradient(#135a6c, grey, #135a6c);
-    background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-repeat: repeat-y;
 }
 
 code {
