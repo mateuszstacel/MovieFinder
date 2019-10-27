@@ -3,7 +3,7 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-image: radial-gradient(#135a6c, grey, #135a6c);
+   background: black;
   background-repeat: no-repeat;
   background-repeat: repeat-y;
 }
@@ -11,4 +11,45 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.MovieDetailsMainComponent {
+  background: black;
+  padding: 50px;
+  display: flex;
+}
+
+.Description {
+ padding: 0 0 0 20px;
+ color: white;
+ width: 35%;
+}
+.YoutubeVideo{
+  width: 700px;
+  height: 450px;
+}
+
+
+.MovieImage {
+  margin-left: 30px;
+}
+
+.viedoModal{
+  background: black;
+}
+
+.fa-youtube {
+  font-size: 4vw;
+}
+.fa-youtube:hover {
+  font-size: 5vw;
+  cursor: pointer;
+  color: red;
+}
+.PlayVideo {
+  display: flex;
+  flex: auto;
+  justify-content: center;
+  margin-top: 150px;
+  text-align: center;
 }

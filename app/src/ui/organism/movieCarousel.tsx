@@ -20,7 +20,7 @@ interface IResponseKidsMovies {
 interface IKidsdMoviesProps {
     className?: string;
     movieType: string,
-    title: string,
+    title?: string,
 }
 
 interface ITopKidsMoviesState {
@@ -69,6 +69,9 @@ render () {
         },
       };
 
+      const HandleClick = () => {
+        window.scrollTo(0, 0)
+      }
 
     return(
         <div className={this.props.className}>
@@ -79,7 +82,7 @@ render () {
  infinite={true}>
         {this.state.data.map( (item: IKidsMovies) => {
             return (
-                <div  key={item.id}  className="Movie">
+                <div onClick={HandleClick}  key={item.id}  className="Movie">
                 <Link to={`/movies-library/movie/${item.id}`}>
                 
                           <img key={item.id} src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}/>              

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Logo from '../../../public/images/logo.jpg'
+import {Link} from 'react-router-dom'
 
 interface INavBar{
     className?: string;
@@ -9,10 +9,12 @@ interface INavBar{
 const Component: React.FunctionComponent<INavBar> = (props: INavBar) => {
 return(
     <div className={props.className}>
+        <Link to="/">
         <div className="Logo">          
-            <p>Movie Library <i className="fas fa-video"></i></p>
+        <img height="160" width="160" src ="/images/logo.jpg"/>
+         
         </div>
-
+        </Link>
 
     </div>
 )
@@ -25,6 +27,13 @@ color: white;
 font: bold;
 padding: 20px;
 justify-content: center;
+.LogoText {
+    line-height: 160px;
+}
+.Logo {
+font-size:2vw;
+font-family: "Times New Roman";
+}
 
 
 `
