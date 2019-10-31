@@ -42,13 +42,7 @@ enum KindsOfMovies {
 export const MovieDetails: React.FunctionComponent<
   RouteComponentProps<TParams, any, any>
 > = ({ match }: RouteComponentProps<TParams>) => {
-  const [imgSrc, setImgSrc] = useState("");
   const [movieKey, setMovieKey] = useState("");
-  const [title, setTitle] = useState("");
-  const [overview, setOverview] = useState("");
-  const [tagline, setTagLine] = useState("");
-  const [voteAverage, setVoteAvarage] = useState("");
-  const [totalVotes, setTotalVotes] = useState("");
   const [isVideoVisible, setIsVideoVisible] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
   const [data, setData] = useState(defaultData);
@@ -64,12 +58,6 @@ export const MovieDetails: React.FunctionComponent<
         debugger;
         console.log(response);
         setData(response);
-        setImgSrc(response.poster_path);
-        setTitle(response.title);
-        setOverview(response.overview);
-        setTagLine(response.tagline);
-        setVoteAvarage(response.vote_average.toString());
-        setTotalVotes(response.vote_count.toString());
       });
 
     fetch(
