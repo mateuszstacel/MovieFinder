@@ -23,6 +23,7 @@ export const Spinner = styled(SpinnerComponent)`
   position: relative;
   justify-content: center;
   align-items: center;
+  margin-top: 25px;
   span:after {
     animation: spinAround 500ms infinite linear;
     border: 2px solid #dbdbdb;
@@ -39,5 +40,6 @@ export const Spinner = styled(SpinnerComponent)`
   }
   label {
     margin: 12px;
+    color: white;
   }
 `;

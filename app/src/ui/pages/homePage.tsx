@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { MainComponent } from "../templates/MainComponent";
 import { CarouselComponent } from "../organism/movieCarousel";
-
+import { Spinner } from "../atoms/spinner";
+import { Movies } from "../templates/movies";
 interface IHomePage {
   className?: string;
 }
@@ -103,6 +104,9 @@ const Component: React.FunctionComponent<IHomePage> = (props: IHomePage) => {
   const [currentActive, setCurrentActive] = useState("movie");
   const [movieData, setMovieData] = useState(DefaultMovieData);
   const [tvShowData, setTvShowData] = useState(DefaultTVShowData);
+  const [isLoading, setIsLoading] = useState(false);
+  const [showSuggestedMovies, setShowSuggestedMovies] = useState(true);
+  const [showMovies, setShowMovies] = useState(true);
 
   const HandleInputChange = () => {
     return (value: string) => {
@@ -114,9 +118,13 @@ const Component: React.FunctionComponent<IHomePage> = (props: IHomePage) => {
     alert(inputText);
     switch (currentActive) {
       case "movie":
+        setIsLoading(true);
+        setShowSuggestedMovies(false);
         HandleMovieSearch(inputText);
         return;
       case "tvShow":
+        setIsLoading(true);
+        setShowSuggestedMovies(false);
         HandleTVShowSearch(inputText);
         return;
     }
@@ -133,14 +141,16 @@ const Component: React.FunctionComponent<IHomePage> = (props: IHomePage) => {
       ` https://api.themoviedb.org/3/search/movie?api_key=9f471da832491516e75802f839e2bae2&query=${queryString}`
     )
       .then(res => {
-        return res.json();
+        if (res.ok) {
+          return res.json();
+        }
       })
       .then((response: IResponseVideo) => {
-        debugger;
-        console.log(response);
         setMovieData(
           response.results.map((dataRow: IResponseVideoData) => dataRow)
         );
+        setIsLoading(false);
+        setShowMovies(true);
         return;
       });
   };
@@ -150,14 +160,15 @@ const Component: React.FunctionComponent<IHomePage> = (props: IHomePage) => {
       `https://api.themoviedb.org/3/search/tv?api_key=9f471da832491516e75802f839e2bae2&query=${queryString}`
     )
       .then(res => {
-        return res.json();
+        if (res.ok) {
+          return res.json();
+        }
       })
       .then((response: IResponseTVShow) => {
-        debugger;
-        console.log(response);
         setTvShowData(
           response.results.map((dataRow: IResponseTVShowData) => dataRow)
         );
+        setIsLoading(false);
         return;
       });
   };
@@ -169,24 +180,30 @@ const Component: React.FunctionComponent<IHomePage> = (props: IHomePage) => {
         onInputChange={HandleInputChange}
         currentSearch={HandleCategoryChange()}
       />
-      <p>{currentActive}</p>
-      <p className="has-text-white">{inputText}</p>
-      <CarouselComponent
-        title={MoviesTitles.popular}
-        movieType={KindsOfMovies.popular}
-      />
-      <CarouselComponent
-        title={MoviesTitles.kids}
-        movieType={KindsOfMovies.kids}
-      />
-      <CarouselComponent
-        title={MoviesTitles.topRated}
-        movieType={KindsOfMovies.topRated}
-      />
-      <CarouselComponent
-        title={MoviesTitles.comedies}
-        movieType={KindsOfMovies.comedies}
-      />
+      {isLoading && <Spinner label={`loading ${currentActive}'s ...`} />}
+
+      {showSuggestedMovies && (
+        <div>
+          <CarouselComponent
+            title={MoviesTitles.popular}
+            movieType={KindsOfMovies.popular}
+          />
+          <CarouselComponent
+            title={MoviesTitles.kids}
+            movieType={KindsOfMovies.kids}
+          />
+          <CarouselComponent
+            title={MoviesTitles.topRated}
+            movieType={KindsOfMovies.topRated}
+          />
+          <CarouselComponent
+            title={MoviesTitles.comedies}
+            movieType={KindsOfMovies.comedies}
+          />
+        </div>
+      )}
+
+      {showMovies && <Movies data={movieData} />}
     </div>
   );
 };

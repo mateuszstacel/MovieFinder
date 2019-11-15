@@ -5,6 +5,7 @@ import { NavBar } from "./navbar";
 import { InputComponent } from "../atoms/input";
 import { Title } from "../templates/title";
 import { SearchViewComponent } from "../organism/searchResultModal";
+
 interface IMainComponent {
   className?: string;
   onInputChange: () => (value: string) => void;
