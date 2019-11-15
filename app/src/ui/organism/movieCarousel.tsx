@@ -109,7 +109,7 @@ class PopularMoviesComponent extends React.Component<
           infinite={true}
         >
           {this.state.data.map((item: IKidsMovies) => {
-            return (
+            return item.poster_path != undefined ? (
               <div onClick={HandleClick} key={item.id} className="Movie">
                 <Link to={`/movies-library/movie/${item.id}`}>
                   <img
@@ -118,6 +118,8 @@ class PopularMoviesComponent extends React.Component<
                   />
                 </Link>
               </div>
+            ) : (
+              ""
             );
           })}
         </Carousel>
