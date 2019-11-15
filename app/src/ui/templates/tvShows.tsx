@@ -1,19 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { IResponseVideo, IResponseVideoData } from "../pages/homePage";
+import { IResponseTVShowData } from "../pages/homePage";
 interface IComponent {
   className?: string;
-  data: IResponseVideoData[];
+  data: IResponseTVShowData[];
 }
 
 const Component: React.FunctionComponent<IComponent> = (props: IComponent) => {
   return (
     <div className={`${props.className} main`}>
-      {props.data.map((item: IResponseVideoData) => {
+      {props.data.map((item: IResponseTVShowData) => {
         return item.poster_path != undefined ? (
           <div className="ImageContainer" key={item.id}>
-            <Link to={`/movies-library/movie/${item.id}`}>
+            <Link to={`/tv-shows-library/tv-show/${item.id}`}>
               <img
                 className="image"
                 key={item.id}
@@ -30,14 +30,15 @@ const Component: React.FunctionComponent<IComponent> = (props: IComponent) => {
   );
 };
 
-export const Movies = styled(Component)`
+export const TvShows = styled(Component)`
   background: black;
   display: inline-flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  width: 100%;
 
   .ImageContainer {
-    width: 200px;
+    width: 250px;
     display: flex;
     background: black;
     margin: 20px;

@@ -54,7 +54,9 @@ export const MovieDetails: React.FunctionComponent<RouteComponentProps<
       `https://api.themoviedb.org/3/movie/${match.params.id}?api_key=9f471da832491516e75802f839e2bae2`
     )
       .then(res => {
-        return res.json();
+        if (res.ok) {
+          return res.json();
+        }
       })
       .then((response: IMovie) => {
         debugger;
@@ -68,17 +70,21 @@ export const MovieDetails: React.FunctionComponent<RouteComponentProps<
     )
       .then(res => {
         debugger;
-        return res.json();
+        if (res.ok) {
+          return res.json();
+        }
       })
       .then((response: IMovieVideoResponse) => {
-        if (response.results.length > 0) {
-          setMovieKey(response.results[0].key);
-          setIsVideoVisible(true);
-          return;
-        } else {
-          setShowVideo(false);
-          setIsVideoVisible(false);
-          return;
+        if (response != undefined) {
+          if (response.results.length > 0) {
+            setMovieKey(response.results[0].key);
+            setIsVideoVisible(true);
+            return;
+          } else {
+            setShowVideo(false);
+            setIsVideoVisible(false);
+            return;
+          }
         }
       });
   });
@@ -116,8 +122,10 @@ export const MovieDetails: React.FunctionComponent<RouteComponentProps<
           <label className="title has-text-white">{data.title}</label>
           <br />
           <p>
-            <i className="far fa-star has-text-warning"></i>{" "}
-            {data.vote_average.toString()} of {data.vote_count.toString()}{" "}
+            {data.vote_average.toString()}
+            <i className="far fa-star has-text-warning"></i> from{" "}
+            {data.vote_count.toString()}
+            <span> </span>
             voutes
           </p>
           <br />
@@ -142,9 +150,9 @@ export const MovieDetails: React.FunctionComponent<RouteComponentProps<
         movieType={KindsOfMovies.best2010}
         title="Explore More"
       />
-      <CarouselComponent movieType={KindsOfMovies.withBradPitt} />
       <CarouselComponent movieType={KindsOfMovies.drama} />
       <CarouselComponent movieType={KindsOfMovies.lowRated} />
+      <CarouselComponent movieType={KindsOfMovies.withBradPitt} />
     </div>
   );
 };

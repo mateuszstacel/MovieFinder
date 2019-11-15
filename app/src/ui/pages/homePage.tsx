@@ -4,11 +4,12 @@ import { MainComponent } from "../templates/MainComponent";
 import { CarouselComponent } from "../organism/movieCarousel";
 import { Spinner } from "../atoms/spinner";
 import { Movies } from "../templates/movies";
+import { TvShows } from "../templates/tvShows";
 interface IHomePage {
   className?: string;
 }
 
-interface IResponseVideoData {
+export interface IResponseVideoData {
   adult: boolean;
   backdrop_path: string;
   genre_ids: number[];
@@ -24,11 +25,11 @@ interface IResponseVideoData {
   vote_average: number;
   vote_count: number;
 }
-interface IResponseVideo {
+export interface IResponseVideo {
   results: IResponseVideoData[];
 }
 
-interface IResponseTVShowData {
+export interface IResponseTVShowData {
   backdrop_path: string;
   first_air_date: string;
   genre_ids: number[];
@@ -44,7 +45,7 @@ interface IResponseTVShowData {
   vote_average: number;
   vote_count: number;
 }
-interface IResponseTVShow {
+export interface IResponseTVShow {
   results: IResponseTVShowData[];
 }
 
@@ -106,7 +107,8 @@ const Component: React.FunctionComponent<IHomePage> = (props: IHomePage) => {
   const [tvShowData, setTvShowData] = useState(DefaultTVShowData);
   const [isLoading, setIsLoading] = useState(false);
   const [showSuggestedMovies, setShowSuggestedMovies] = useState(true);
-  const [showMovies, setShowMovies] = useState(true);
+  const [showMovies, setShowMovies] = useState(false);
+  const [showTvShows, setShowTvShows] = useState(false);
 
   const HandleInputChange = () => {
     return (value: string) => {
@@ -115,7 +117,6 @@ const Component: React.FunctionComponent<IHomePage> = (props: IHomePage) => {
   };
 
   const HandleEnterPress = () => {
-    alert(inputText);
     switch (currentActive) {
       case "movie":
         setIsLoading(true);
@@ -169,6 +170,7 @@ const Component: React.FunctionComponent<IHomePage> = (props: IHomePage) => {
           response.results.map((dataRow: IResponseTVShowData) => dataRow)
         );
         setIsLoading(false);
+        setShowTvShows(true);
         return;
       });
   };
@@ -204,6 +206,7 @@ const Component: React.FunctionComponent<IHomePage> = (props: IHomePage) => {
       )}
 
       {showMovies && <Movies data={movieData} />}
+      {showTvShows && <TvShows data={tvShowData} />}
     </div>
   );
 };
