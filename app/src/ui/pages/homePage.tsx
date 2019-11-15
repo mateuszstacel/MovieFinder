@@ -151,6 +151,7 @@ const Component: React.FunctionComponent<IHomePage> = (props: IHomePage) => {
           response.results.map((dataRow: IResponseVideoData) => dataRow)
         );
         setIsLoading(false);
+        setShowTvShows(false);
         setShowMovies(true);
         return;
       });
@@ -170,7 +171,9 @@ const Component: React.FunctionComponent<IHomePage> = (props: IHomePage) => {
           response.results.map((dataRow: IResponseTVShowData) => dataRow)
         );
         setIsLoading(false);
+        setShowMovies(false);
         setShowTvShows(true);
+
         return;
       });
   };
