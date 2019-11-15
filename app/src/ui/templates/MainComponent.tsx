@@ -8,6 +8,8 @@ import { SearchViewComponent } from "../organism/searchResultModal";
 interface IMainComponent {
   className?: string;
   onInputChange: () => (value: string) => void;
+  onEnterPress: () => void;
+  currentSearch: (type: string) => void;
 }
 
 const Component: React.FunctionComponent<IMainComponent> = (
@@ -17,17 +19,19 @@ const Component: React.FunctionComponent<IMainComponent> = (
   const [isMovieActive, setIsMovieActive] = useState(true);
   const [isTvShowActive, setIsTVShowActive] = useState(false);
 
-  const Handle = () => {
-    setIsLoaded(true);
+  const HandleEnterPress = () => {
+    props.onEnterPress();
   };
 
   const HandleCategoryChange = () => {
     if (isMovieActive) {
       setIsMovieActive(false);
       setIsTVShowActive(true);
+      props.currentSearch("tvShow");
     } else {
       setIsMovieActive(true);
       setIsTVShowActive(false);
+      props.currentSearch("movie");
     }
   };
 
@@ -47,11 +51,11 @@ const Component: React.FunctionComponent<IMainComponent> = (
       <Title />
       <InputComponent
         onChange={props.onInputChange()}
+        onEnter={HandleEnterPress}
         placeholder={isMovieActive ? "Search for Movie" : "Search for Tv Shows"}
       />
       <small className="control helper has-text-white ">
-        Action, Advertisement, Adventure, Comedy, Crime, Drama, Fantasy,
-        History, Horror
+        Action, Advertisement, Adventure, Comedy and much more...
       </small>
     </div>
   );

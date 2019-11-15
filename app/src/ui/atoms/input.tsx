@@ -6,6 +6,7 @@ interface IComponent {
   className?: string;
   placeholder: string;
   onChange: (value: string) => void;
+  onEnter: () => void;
 }
 
 const Component: React.FunctionComponent<IComponent> = (props: IComponent) => {
@@ -17,7 +18,7 @@ const Component: React.FunctionComponent<IComponent> = (props: IComponent) => {
 
   const HandleEnterPress = (event: any) => {
     if (event.keyCode === 13) {
-      console.log(event);
+      props.onEnter();
     }
   };
 

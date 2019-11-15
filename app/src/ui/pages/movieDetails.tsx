@@ -34,14 +34,16 @@ type TParams = { id: string };
 
 enum KindsOfMovies {
   drama = "with_genres=18&sort_by=vote_average.desc&vote_count.gte=10",
-  best2010 = "/discover/movie?with_genres=12&primary_release_year=2010",
+  best2010 = "/discover/movie?with_people=108916,7467&sort_by=popularity.desc",
   withBradPitt = "/discover/movie?with_people=287,819&sort_by=vote_average.desc",
   lowRated = "/discover/movie?sort_by=popularity.asc"
 }
 
-export const MovieDetails: React.FunctionComponent<
-  RouteComponentProps<TParams, any, any>
-> = ({ match }: RouteComponentProps<TParams>) => {
+export const MovieDetails: React.FunctionComponent<RouteComponentProps<
+  TParams,
+  any,
+  any
+>> = ({ match }: RouteComponentProps<TParams>) => {
   const [movieKey, setMovieKey] = useState("");
   const [isVideoVisible, setIsVideoVisible] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
@@ -58,6 +60,7 @@ export const MovieDetails: React.FunctionComponent<
         debugger;
         console.log(response);
         setData(response);
+        return;
       });
 
     fetch(
@@ -71,9 +74,11 @@ export const MovieDetails: React.FunctionComponent<
         if (response.results.length > 0) {
           setMovieKey(response.results[0].key);
           setIsVideoVisible(true);
+          return;
         } else {
           setShowVideo(false);
           setIsVideoVisible(false);
+          return;
         }
       });
   });
