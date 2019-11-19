@@ -87,14 +87,14 @@ let DefaultTVShowData: IResponseTVShowData[] = [
   }
 ];
 enum KindsOfMovies {
-  kids = "certification_country=US&certification.lte=G&sort_by=popularity",
+  mostWatched = "certification_country=US&certification.lte=G&sort_by=popularity",
   popular = "sort_by=popularity.desc",
   comedies = "with_genres=35&with_cast=23659&sort_by=revenue.desc",
   topRated = "certification_country=US&certification=R&sort_by=vote_average.desc"
 }
 
 enum MoviesTitles {
-  kids = "Kids",
+  mostWatched = "Most Watched",
   popular = "Pupular",
   topRated = "Top Rated",
   comedies = " Science Fiction"
@@ -194,8 +194,8 @@ const Component: React.FunctionComponent<IHomePage> = (props: IHomePage) => {
             movieType={KindsOfMovies.popular}
           />
           <CarouselComponent
-            title={MoviesTitles.kids}
-            movieType={KindsOfMovies.kids}
+            title={MoviesTitles.mostWatched}
+            movieType={KindsOfMovies.mostWatched}
           />
           <CarouselComponent
             title={MoviesTitles.topRated}

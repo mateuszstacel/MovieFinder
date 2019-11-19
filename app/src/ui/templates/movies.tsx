@@ -41,6 +41,11 @@ export const Movies = styled(Component)`
     display: flex;
     background: black;
     margin: 20px;
+
+    @media screen and (min-device-width: 300px) and (max-device-width: 845px) {
+      width: 80px;
+      margin: 5px;
+    }
   }
   .main {
     margin: 20px;

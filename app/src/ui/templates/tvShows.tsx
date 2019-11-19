@@ -42,6 +42,9 @@ export const TvShows = styled(Component)`
     display: flex;
     background: black;
     margin: 20px;
+    @media screen and (min-device-width: 300px) and (max-device-width: 845px) {
+      width: 80px;
+      margin: 20px;
   }
   .main {
     margin: 20px;

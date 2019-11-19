@@ -91,7 +91,7 @@ class PopularMoviesComponent extends React.Component<
       },
       mobile: {
         breakpoint: { max: 464, min: 0 },
-        items: 1
+        items: 3
       }
     };
 
@@ -137,8 +137,18 @@ export const CarouselComponent = styled(PopularMoviesComponent)`
     margin-left: 40px;
     color: white;
     font: bold;
+
+    @media screen and (min-device-width: 300px) and (max-device-width: 845px) {
+      font-size: 7vw;
+      color: white;
+      margin-left: 10px;
+    }
   }
   .Movie {
     width: 300px;
+
+    @media screen and (min-device-width: 300px) and (max-device-width: 845px) {
+      width: 120px;
+    }
   }
 `;

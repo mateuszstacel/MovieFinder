@@ -3,7 +3,8 @@ import { RouteComponentProps } from "react-router-dom";
 import { NavBar } from "../templates/navbar";
 import { PlayMovieComponent } from "../organism/youtubeModal";
 import { CarouselComponent } from "../organism/movieCarousel";
-
+import styled from "styled-components";
+import { tsPropertySignature } from "@babel/types";
 interface IMovieVideo {
   key: string;
 }
@@ -39,11 +40,15 @@ enum KindsOfMovies {
   lowRated = "/discover/movie?sort_by=popularity.asc"
 }
 
-export const MovieDetails: React.FunctionComponent<RouteComponentProps<
+interface IComponent {
+  className?: string;
+}
+
+export const Component: React.FunctionComponent<RouteComponentProps<
   TParams,
   any,
   any
->> = ({ match }: RouteComponentProps<TParams>) => {
+>> = ({ match }: RouteComponentProps<TParams>, props: IComponent) => {
   const [movieKey, setMovieKey] = useState("");
   const [isVideoVisible, setIsVideoVisible] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
@@ -103,7 +108,7 @@ export const MovieDetails: React.FunctionComponent<RouteComponentProps<
     setShowVideo(true);
   };
   return (
-    <div>
+    <div className={props.className}>
       <NavBar />
 
       <div className="MovieDetailsMainComponent">
@@ -112,8 +117,7 @@ export const MovieDetails: React.FunctionComponent<RouteComponentProps<
         )}
         <div className="MovieImage">
           <img
-            width="300"
-            height="300"
+            className="imageMovieDetails"
             src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`}
           />
         </div>
@@ -156,3 +160,15 @@ export const MovieDetails: React.FunctionComponent<RouteComponentProps<
     </div>
   );
 };
+
+export const MovieDetails = styled(Component)`
+  .MovieDetailsMainComponent {
+    background: black;
+    padding: 50px;
+    display: flex;
+
+    @media screen and (min-device-width: 300px) and (max-device-width: 845px) {
+      padding: 10px;
+    }
+  }
+`;
