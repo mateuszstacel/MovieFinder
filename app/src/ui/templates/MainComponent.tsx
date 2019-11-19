@@ -54,7 +54,7 @@ const Component: React.FunctionComponent<IMainComponent> = (
         onEnter={HandleEnterPress}
         placeholder={isMovieActive ? "Search for Movie" : "Search for Tv Shows"}
       />
-      <small className="control helper has-text-white ">
+      <small className="control resSub helper has-text-white ">
         Action, Advertisement, Adventure, Comedy and much more...
       </small>
     </div>
@@ -68,6 +68,11 @@ export const MainComponent = styled(Component)`
   background-size: 100%;
   background-repeat: no-repeat;
 
+  @media screen and (min-device-width: 300px) and (max-device-width: 845px) {
+    width: 100%;
+    height: 280px;
+  }
+
   .Tittle {
     text-align: center;
     font-size: 3vw;
@@ -76,6 +81,12 @@ export const MainComponent = styled(Component)`
   .Logo {
     font-size: 2vw;
     font-family: "Times New Roman";
+  }
+
+  .resSub {
+    @media screen and (min-device-width: 360px) and (max-device-width: 845px) {
+      font-size: 2.3vw;
+    }
   }
 
   .control {
