@@ -28,7 +28,7 @@ const Component: React.FunctionComponent<IComponent> = (props: IComponent) => {
         <input
           onChange={onInputChange(setInputValue)}
           onKeyUp={HandleEnterPress}
-          className="input is-large"
+          className="input is-medium"
           type="text"
           placeholder={props.placeholder}
         />
@@ -43,6 +43,24 @@ const Component: React.FunctionComponent<IComponent> = (props: IComponent) => {
 export const InputComponent = styled(Component)`
   .control {
     margin-left: 25%;
+  }
+
+  .is-medium {
+    @media screen and (min-device-width: 300px) and (max-device-width: 845px) {
+      margin-left: -5%;
+    }
+  }
+
+  .icon {
+    @media screen and (min-device-width: 300px) and (max-device-width: 845px) {
+      margin-left: -5%;
+    }
+  }
+
+  .has-icons-left {
+    @media screen and (min-device-width: 360px) and (max-device-width: 845px) {
+      width: 100%;
+    }
   }
 
   .input {
