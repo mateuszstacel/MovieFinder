@@ -45,7 +45,6 @@ class PopularMoviesComponent extends React.Component<
       `https://api.themoviedb.org/3/discover/movie?${this.props.movieType}&api_key=9f471da832491516e75802f839e2bae2`
     )
       .then(res => {
-        debugger;
         return res.json();
       })
       .then((response: IResponseKidsMovies) => {
@@ -107,6 +106,7 @@ class PopularMoviesComponent extends React.Component<
           swipeable={false}
           draggable={false}
           infinite={true}
+          centerMode={true}
         >
           {this.state.data.map((item: IKidsMovies) => {
             return item.poster_path != undefined ? (

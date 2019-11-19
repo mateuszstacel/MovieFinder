@@ -64,8 +64,6 @@ export const Component: React.FunctionComponent<RouteComponentProps<
         }
       })
       .then((response: IMovie) => {
-        debugger;
-        console.log(response);
         setData(response);
         return;
       });
@@ -74,7 +72,6 @@ export const Component: React.FunctionComponent<RouteComponentProps<
       `https://api.themoviedb.org/3/movie/${match.params.id}/videos?api_key=9f471da832491516e75802f839e2bae2&language=en-US`
     )
       .then(res => {
-        debugger;
         if (res.ok) {
           return res.json();
         }
@@ -93,12 +90,6 @@ export const Component: React.FunctionComponent<RouteComponentProps<
         }
       });
   });
-
-  useEffect(() => {
-    if (movieKey != "") {
-      setIsVideoVisible(true);
-    }
-  }, [movieKey]);
 
   const HandleVideoClose = () => {
     setShowVideo(false);

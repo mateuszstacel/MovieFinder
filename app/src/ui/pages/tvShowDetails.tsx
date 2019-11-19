@@ -59,8 +59,6 @@ export const TvShowDetails: React.FunctionComponent<RouteComponentProps<
         }
       })
       .then((response: ITvShow) => {
-        debugger;
-        console.log(response);
         setData(response);
         return;
       });
