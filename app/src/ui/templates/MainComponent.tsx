@@ -42,7 +42,6 @@ const Component: React.FunctionComponent<IMainComponent> = (
 
   return (
     <div className={props.className}>
-      <SearchViewComponent />
       <NavBar
         onCategoryChange={HandleCategoryChange}
         onTvShowActive={isTvShowActive}

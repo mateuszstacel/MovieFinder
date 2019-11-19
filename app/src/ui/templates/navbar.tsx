@@ -12,14 +12,14 @@ interface INavBar {
 const Component: React.FunctionComponent<INavBar> = (props: INavBar) => {
   return (
     <div className={props.className}>
-      <div className="columns">
+      <div className="columns NavOptions">
         <Link to="/">
           <div className="Logo">
-            <img height="160" width="160" src="/images/logo.jpg" />
+            <img className="Image" src="/images/logo.jpg" />
           </div>
         </Link>
 
-        <div className="marginClass">
+        <div className="marginClass divWidth">
           <Link to="/">
             <p
               onClick={props.onCategoryChange}
@@ -32,7 +32,7 @@ const Component: React.FunctionComponent<INavBar> = (props: INavBar) => {
           </Link>
         </div>
 
-        <div className="marginClass">
+        <div className="marginClass divWidth">
           <Link to="/">
             <p
               onClick={props.onCategoryChange}
@@ -58,6 +58,18 @@ export const NavBar = styled(Component)`
     line-height: 160px;
   }
 
+  .NavOptions {
+    display: flex;
+  }
+
+  .Image {
+    height: 110px;
+    @media screen and (min-device-width: 300px) and (max-device-width: 845px) {
+      height: 50px;
+      border-radius: 60%;
+    }
+  }
+
   .Logo {
     font-size: 2vw;
     font-family: "Times New Roman";
@@ -66,9 +78,17 @@ export const NavBar = styled(Component)`
   .SidebarOption {
     color: white;
     font-size: 1.5vw;
+
+    @media screen and (min-device-width: 300px) and (max-device-width: 845px) {
+      font-size: 5vw;
+    }
   }
   .marginClass {
     margin-left: 5%;
+  }
+
+  .divWidth {
+    width: fit-content;
   }
 
   .underLine {
