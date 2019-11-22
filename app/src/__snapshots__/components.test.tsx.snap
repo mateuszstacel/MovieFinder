@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CarouselComponent /> renders CarouselComponent without crashing 1`] = `
+<div>
+  <div
+    class="sc-htpNat bgzSJY"
+  >
+    <label
+      class="Label"
+    />
+    <div
+      class="react-multi-carousel-list  "
+    >
+      <ul
+        class="react-multi-carousel-track "
+        style="transition: none; overflow: unset; transform: translate3d(0px,0,0);"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<PlayMovieComponent /> renders PlayMovieComponent without crashing 1`] = `
+<div>
+  <div
+    class="modal is-active"
+  >
+    <div
+      class="modal-background"
+    />
+    <div
+      class="modal-card"
+    >
+      <button
+        aria-label="close"
+        class="modal-close is-large"
+      />
+      <section
+        class=" viedoModal"
+      >
+        <iframe
+          class="YoutubeVideo"
+          src="https://www.youtube.com/embed/undefined"
+        />
+        }
+      </section>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<Spinner /> renders Spinner without crashing 1`] = `
+<div>
+  <div
+    class="sc-bwzfXH kfnZfo"
+  >
+    <span />
+    <label />
+  </div>
+</div>
+`;
+
+exports[`<Title /> renders Title without crashing 1`] = `
+<div>
+  <div
+    class="sc-ifAKCX flzyHI"
+  >
+    <div
+      class="Tittle"
+    >
+      <label
+        class="TittleLabel"
+      >
+        Your public library to find yours favorite movies.
+      </label>
+      <br />
+      <label
+        class="subtitle subtitleLabel"
+      >
+        Discover over million videos shared by our generous community.
+      </label>
+    </div>
+    <br />
+  </div>
+</div>
+`;

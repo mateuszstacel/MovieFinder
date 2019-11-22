@@ -8,6 +8,18 @@ interface IComponent {
 }
 
 const Component: React.FunctionComponent<IComponent> = (props: IComponent) => {
+  const HandleNoResult = () => {
+    return (
+      <div className="ImageContainer">
+        <img
+          className="image"
+          key="notFound"
+          src="https://i.makeagif.com/media/11-04-2015/mfnzwt.gif"
+        />
+      </div>
+    );
+  };
+
   return (
     <div className={`${props.className} main`}>
       {props.data.map((item: IResponseTVShowData) => {
@@ -26,6 +38,7 @@ const Component: React.FunctionComponent<IComponent> = (props: IComponent) => {
           ""
         );
       })}
+      {props.data.length == 0 && HandleNoResult()}
     </div>
   );
 };

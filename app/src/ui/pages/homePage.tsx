@@ -5,6 +5,7 @@ import { CarouselComponent } from "../organism/movieCarousel";
 import { Spinner } from "../atoms/spinner";
 import { Movies } from "../templates/movies";
 import { TvShows } from "../templates/tvShows";
+
 interface IHomePage {
   className?: string;
 }
@@ -27,6 +28,11 @@ export interface IResponseVideoData {
 }
 export interface IResponseVideo {
   results: IResponseVideoData[];
+}
+
+enum KindsOfTVShows {
+  popular = "popular",
+  topRated = "top_rated"
 }
 
 export interface IResponseTVShowData {
@@ -109,14 +115,33 @@ const Component: React.FunctionComponent<IHomePage> = (props: IHomePage) => {
   const [showSuggestedMovies, setShowSuggestedMovies] = useState(true);
   const [showMovies, setShowMovies] = useState(false);
   const [showTvShows, setShowTvShows] = useState(false);
+  const [showSuggestedTVShows, setShowSuggestedTVShows] = useState(false);
 
   const HandleInputChange = () => {
     return (value: string) => {
       setInputText(value);
+      if (value != "") {
+        HandleKeyDownSearch(value);
+      } else {
+        setShowMovies(false);
+        setShowTvShows(false);
+
+        switch (currentActive) {
+          case "movie":
+            setShowSuggestedMovies(true);
+            setShowSuggestedTVShows(false);
+
+            return;
+          case "tvShow":
+            setShowSuggestedMovies(false);
+            setShowSuggestedTVShows(true);
+            return;
+        }
+      }
     };
   };
 
-  const HandleEnterPress = () => {
+  const HandleKeyDownSearch = (inputText: string) => {
     switch (currentActive) {
       case "movie":
         setIsLoading(true);
@@ -125,7 +150,7 @@ const Component: React.FunctionComponent<IHomePage> = (props: IHomePage) => {
         return;
       case "tvShow":
         setIsLoading(true);
-        setShowSuggestedMovies(false);
+        setShowSuggestedTVShows(false);
         HandleTVShowSearch(inputText);
         return;
     }
@@ -134,6 +159,21 @@ const Component: React.FunctionComponent<IHomePage> = (props: IHomePage) => {
   const HandleCategoryChange = () => {
     return (type: string) => {
       setCurrentActive(type);
+      setInputText("");
+      setShowMovies(false);
+      setShowTvShows(false);
+
+      switch (type) {
+        case "movie":
+          setShowSuggestedMovies(true);
+          setShowSuggestedTVShows(false);
+
+          return;
+        case "tvShow":
+          setShowSuggestedMovies(false);
+          setShowSuggestedTVShows(true);
+          return;
+      }
     };
   };
 
@@ -147,6 +187,8 @@ const Component: React.FunctionComponent<IHomePage> = (props: IHomePage) => {
         }
       })
       .then((response: IResponseVideo) => {
+        if (response.results.length == 0) {
+        }
         setMovieData(
           response.results.map((dataRow: IResponseVideoData) => dataRow)
         );
@@ -181,8 +223,8 @@ const Component: React.FunctionComponent<IHomePage> = (props: IHomePage) => {
   return (
     <div className={props.className}>
       <MainComponent
-        onEnterPress={HandleEnterPress}
         onInputChange={HandleInputChange}
+        inputValue={inputText}
         currentSearch={HandleCategoryChange()}
       />
       {isLoading && <Spinner label={`loading ${currentActive}'s ...`} />}
@@ -190,21 +232,36 @@ const Component: React.FunctionComponent<IHomePage> = (props: IHomePage) => {
       {showSuggestedMovies && (
         <div>
           <CarouselComponent
-            title={MoviesTitles.popular}
+            title="Explore Movies"
             movieType={KindsOfMovies.popular}
+            type="movie"
           />
           <CarouselComponent
             title={MoviesTitles.mostWatched}
             movieType={KindsOfMovies.mostWatched}
+            type="movie"
           />
           <CarouselComponent
             title={MoviesTitles.topRated}
             movieType={KindsOfMovies.topRated}
+            type="movie"
           />
           <CarouselComponent
             title={MoviesTitles.comedies}
             movieType={KindsOfMovies.comedies}
+            type="movie"
           />
+        </div>
+      )}
+
+      {showSuggestedTVShows && (
+        <div>
+          <CarouselComponent
+            tvType={KindsOfTVShows.popular}
+            title="Explore TV Shows"
+            type="tvShow"
+          />
+          <CarouselComponent type="tvShow" tvType={KindsOfTVShows.topRated} />
         </div>
       )}
 

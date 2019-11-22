@@ -6,7 +6,7 @@ interface IComponent {
   className?: string;
   placeholder: string;
   onChange: (value: string) => void;
-  onEnter: () => void;
+  inputValue: string;
 }
 
 const Component: React.FunctionComponent<IComponent> = (props: IComponent) => {
@@ -16,20 +16,14 @@ const Component: React.FunctionComponent<IComponent> = (props: IComponent) => {
     props.onChange(inputValue);
   }, [inputValue]);
 
-  const HandleEnterPress = (event: any) => {
-    if (event.keyCode === 13) {
-      props.onEnter();
-    }
-  };
-
   return (
     <div className={props.className}>
       <div className="control has-icons-left">
         <input
           onChange={onInputChange(setInputValue)}
-          onKeyUp={HandleEnterPress}
           className="input is-medium"
           type="text"
+          value={props.inputValue}
           placeholder={props.placeholder}
         />
         <span className="icon is-left">

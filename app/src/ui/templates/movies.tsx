@@ -7,6 +7,18 @@ interface IComponent {
   data: IResponseVideoData[];
 }
 
+const HandleNoResult = () => {
+  return (
+    <div className="ImageContainer">
+      <img
+        className="image"
+        key="notFound"
+        src="https://i.makeagif.com/media/11-04-2015/mfnzwt.gif"
+      />
+    </div>
+  );
+};
+
 const Component: React.FunctionComponent<IComponent> = (props: IComponent) => {
   return (
     <div className={`${props.className} main`}>
@@ -26,6 +38,7 @@ const Component: React.FunctionComponent<IComponent> = (props: IComponent) => {
           ""
         );
       })}
+      {props.data.length == 0 && HandleNoResult()}
     </div>
   );
 };
@@ -35,7 +48,7 @@ export const Movies = styled(Component)`
   display: inline-flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-
+  width: 100%;
   .ImageContainer {
     width: 200px;
     display: flex;

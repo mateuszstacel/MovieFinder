@@ -33,10 +33,8 @@ let defaultData: ITvShow = {
 type TParams = { id: string };
 
 enum KindsOfTVShows {
-  drama = "",
-  best2010 = "",
-  withBradPitt = "",
-  lowRated = ""
+  popular = "popular",
+  topRated = "top_rated"
 }
 
 export const TvShowDetails: React.FunctionComponent<RouteComponentProps<
@@ -84,7 +82,7 @@ export const TvShowDetails: React.FunctionComponent<RouteComponentProps<
           }
         }
       });
-  });
+  }, [match.params.id]);
 
   useEffect(() => {
     if (movieKey != "") {
@@ -120,7 +118,7 @@ export const TvShowDetails: React.FunctionComponent<RouteComponentProps<
           <br />
           <p>
             {data.vote_average.toString()}
-            <i className="far fa-star has-text-warning"></i> of
+            <i className="far fa-star has-text-warning"></i> of<span> </span>
             {data.vote_count.toString()} <span> </span>
             voutes
           </p>
@@ -140,12 +138,11 @@ export const TvShowDetails: React.FunctionComponent<RouteComponentProps<
       </div>
 
       <CarouselComponent
-        movieType={KindsOfTVShows.best2010}
-        title="Explore More"
+        tvType={KindsOfTVShows.popular}
+        title="More TV Shows"
+        type="tvShow"
       />
-      <CarouselComponent movieType={KindsOfTVShows.withBradPitt} />
-      <CarouselComponent movieType={KindsOfTVShows.drama} />
-      <CarouselComponent movieType={KindsOfTVShows.lowRated} />
+      <CarouselComponent type="tvShow" tvType={KindsOfTVShows.topRated} />
     </div>
   );
 };

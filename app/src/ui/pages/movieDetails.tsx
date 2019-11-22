@@ -55,6 +55,7 @@ export const Component: React.FunctionComponent<RouteComponentProps<
   const [data, setData] = useState(defaultData);
 
   useEffect(() => {
+    debugger;
     fetch(
       `https://api.themoviedb.org/3/movie/${match.params.id}?api_key=9f471da832491516e75802f839e2bae2`
     )
@@ -89,7 +90,7 @@ export const Component: React.FunctionComponent<RouteComponentProps<
           }
         }
       });
-  });
+  }, [match.params.id]);
 
   const HandleVideoClose = () => {
     setShowVideo(false);
@@ -143,11 +144,12 @@ export const Component: React.FunctionComponent<RouteComponentProps<
 
       <CarouselComponent
         movieType={KindsOfMovies.best2010}
-        title="Explore More"
+        title="More Movies"
+        type="movie"
       />
-      <CarouselComponent movieType={KindsOfMovies.drama} />
-      <CarouselComponent movieType={KindsOfMovies.lowRated} />
-      <CarouselComponent movieType={KindsOfMovies.withBradPitt} />
+      <CarouselComponent movieType={KindsOfMovies.drama} type="movie" />
+      <CarouselComponent movieType={KindsOfMovies.lowRated} type="movie" />
+      <CarouselComponent movieType={KindsOfMovies.withBradPitt} type="movie" />
     </div>
   );
 };

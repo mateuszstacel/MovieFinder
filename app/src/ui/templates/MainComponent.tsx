@@ -9,8 +9,8 @@ import { SearchViewComponent } from "../organism/searchResultModal";
 interface IMainComponent {
   className?: string;
   onInputChange: () => (value: string) => void;
-  onEnterPress: () => void;
   currentSearch: (type: string) => void;
+  inputValue: string;
 }
 
 const Component: React.FunctionComponent<IMainComponent> = (
@@ -19,10 +19,6 @@ const Component: React.FunctionComponent<IMainComponent> = (
   const [isLoaded, setIsLoaded] = useState(false);
   const [isMovieActive, setIsMovieActive] = useState(true);
   const [isTvShowActive, setIsTVShowActive] = useState(false);
-
-  const HandleEnterPress = () => {
-    props.onEnterPress();
-  };
 
   const HandleCategoryChange = () => {
     if (isMovieActive) {
@@ -36,10 +32,6 @@ const Component: React.FunctionComponent<IMainComponent> = (
     }
   };
 
-  const HandleInput = () => {
-    props.onInputChange();
-  };
-
   return (
     <div className={props.className}>
       <NavBar
@@ -51,7 +43,7 @@ const Component: React.FunctionComponent<IMainComponent> = (
       <Title />
       <InputComponent
         onChange={props.onInputChange()}
-        onEnter={HandleEnterPress}
+        inputValue={props.inputValue}
         placeholder={isMovieActive ? "Search for Movie" : "Search for Tv Shows"}
       />
       <small className="control resSub helper has-text-white ">
