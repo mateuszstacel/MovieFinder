@@ -6,7 +6,7 @@
 
 ```
 As a user,
-I can search by any movie&tvShow,
+I would like to explore library with movies&tvShows,
 I would like to be able to see any movie&tvShow I will search,
 
 As a user,
