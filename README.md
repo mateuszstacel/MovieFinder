@@ -1,7 +1,8 @@
-# Movie&TvShow Library created with React/Type-script
+
+#  Movie&TvShow Library created with React/Type-script
 
 #### Simple responsive UI for searching The Movie/Tv Show using Database [movieDB](https://www.themoviedb.org/documentation/api​). 
-
+![image](https://user-images.githubusercontent.com/42943907/69501962-06673600-0f02-11ea-8042-656d76b1e549.png)
 ## User Stories
 
 ```
