@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { PlayMovieComponent } from "./youtubeModal";
-import { IMovie } from "../pages/movieDetails";
+import { ITvShow } from "../pages/tvShowDetails";
 interface IComponent {
   className?: string;
   showVideo: boolean;
@@ -9,7 +9,7 @@ interface IComponent {
   OnVideoClose: () => void;
   isVideoVisible: boolean;
   onVideoClick: () => void;
-  data: IMovie;
+  data: ITvShow;
 }
 
 const Component: React.FunctionComponent<IComponent> = (props: IComponent) => {
@@ -24,27 +24,22 @@ const Component: React.FunctionComponent<IComponent> = (props: IComponent) => {
         )}
         <div className="MovieImage">
           <img
-            className="imageMovieDetails"
+            width="300"
+            height="300"
             src={`https://image.tmdb.org/t/p/w500/${props.data.poster_path}`}
           />
         </div>
 
         <div className="Description">
-          <label className="titleMovie has-text-white">
-            {props.data.title}
-          </label>
+          <label className="titleMovie has-text-white">{props.data.name}</label>
 
           <p className="score">
             {props.data.vote_average.toString()}
-            <i className="far fa-star has-text-warning"></i> from
-            {props.data.vote_count.toString()}
-            <span> </span>
+            <i className="far fa-star has-text-warning"></i> of<span> </span>
+            {props.data.vote_count.toString()} <span> </span>
             voutes
           </p>
 
-          <label className="subtitleMovie has-text-white">
-            {props.data.tagline}
-          </label>
           <br />
           <div className="OverviewMovie">
             <p>{props.data.overview}</p>
@@ -67,7 +62,7 @@ const Component: React.FunctionComponent<IComponent> = (props: IComponent) => {
   );
 };
 
-export const MovieOverview = styled(Component)`
+export const TvShowOverview = styled(Component)`
   .MovieDetailsMainComponent {
     background: black;
     padding: 50px;

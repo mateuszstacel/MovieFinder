@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { RouteComponentProps } from "react-router-dom";
 import { NavBar } from "../templates/navbar";
-import { PlayMovieComponent } from "../organism/youtubeModal";
+import { TvShowOverview } from "../organism/tvShowOverview";
 import { CarouselComponent } from "../organism/movieCarousel";
 
 interface ITVShow {
@@ -12,7 +12,7 @@ interface ITvShowResponse {
   results: ITvShow[];
 }
 
-interface ITvShow {
+export interface ITvShow {
   poster_path: string;
   name: string;
   overview: string;
@@ -100,43 +100,14 @@ export const TvShowDetails: React.FunctionComponent<RouteComponentProps<
   return (
     <div>
       <NavBar />
-
-      <div className="MovieDetailsMainComponent">
-        {showVideo && (
-          <PlayMovieComponent movieKey={movieKey} onClose={HandleVideoClose} />
-        )}
-        <div className="MovieImage">
-          <img
-            width="300"
-            height="300"
-            src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`}
-          />
-        </div>
-
-        <div className="Description">
-          <label className="title has-text-white">{data.name}</label>
-          <br />
-          <p>
-            {data.vote_average.toString()}
-            <i className="far fa-star has-text-warning"></i> of<span> </span>
-            {data.vote_count.toString()} <span> </span>
-            voutes
-          </p>
-          <br />
-
-          {data.overview}
-        </div>
-        {isVideoVisible && (
-          <div className="PlayVideo">
-            <p className="title has-text-white" onClick={HandleVideoClick}>
-              Watch thriller
-              <br />
-              <i className="fab fa-youtube"></i>
-            </p>{" "}
-          </div>
-        )}
-      </div>
-
+      <TvShowOverview
+        data={data}
+        isVideoVisible={isVideoVisible}
+        OnVideoClose={HandleVideoClose}
+        onVideoClick={HandleVideoClick}
+        showVideo={showVideo}
+        movieKey={movieKey}
+      />
       <CarouselComponent
         tvType={KindsOfTVShows.popular}
         title="More TV Shows"
