@@ -45,7 +45,6 @@ class PopularMoviesComponent extends React.Component<
   GetMovies() {
     switch (this.props.type) {
       case "tvShow":
-        debugger;
         fetch(
           `https://api.themoviedb.org/3/tv/${this.props.tvType}?api_key=9f471da832491516e75802f839e2bae2&language=en-US&page=1`
         )
@@ -58,7 +57,6 @@ class PopularMoviesComponent extends React.Component<
           });
         return;
       case "movie":
-        debugger;
         fetch(
           `https://api.themoviedb.org/3/discover/movie?${this.props.movieType}&api_key=9f471da832491516e75802f839e2bae2`
         )

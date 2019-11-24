@@ -55,7 +55,6 @@ export const Component: React.FunctionComponent<RouteComponentProps<
   const [data, setData] = useState(defaultData);
 
   useEffect(() => {
-    debugger;
     fetch(
       `https://api.themoviedb.org/3/movie/${match.params.id}?api_key=9f471da832491516e75802f839e2bae2`
     )
