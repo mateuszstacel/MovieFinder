@@ -4,7 +4,7 @@ import { NavBar } from "../templates/navbar";
 import { PlayMovieComponent } from "../organism/youtubeModal";
 import { CarouselComponent } from "../organism/movieCarousel";
 import styled from "styled-components";
-import { tsPropertySignature } from "@babel/types";
+import { MovieOverview } from "../organism/movieOverwiev";
 interface IMovieVideo {
   key: string;
 }
@@ -13,7 +13,7 @@ interface IMovieVideoResponse {
   results: IMovieVideo[];
 }
 
-interface IMovie {
+export interface IMovie {
   poster_path: string;
   title: string;
   overview: string;
@@ -102,45 +102,14 @@ export const Component: React.FunctionComponent<RouteComponentProps<
   return (
     <div className={props.className}>
       <NavBar />
-
-      <div className="MovieDetailsMainComponent">
-        {showVideo && (
-          <PlayMovieComponent movieKey={movieKey} onClose={HandleVideoClose} />
-        )}
-        <div className="MovieImage">
-          <img
-            className="imageMovieDetails"
-            src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`}
-          />
-        </div>
-
-        <div className="Description">
-          <label className="title has-text-white">{data.title}</label>
-          <br />
-          <p>
-            {data.vote_average.toString()}
-            <i className="far fa-star has-text-warning"></i> from{" "}
-            {data.vote_count.toString()}
-            <span> </span>
-            voutes
-          </p>
-          <br />
-          <label className="subtitle has-text-white">{data.tagline}</label>
-          <br />
-          <br /> <br /> <br />
-          {data.overview}
-        </div>
-        {isVideoVisible && (
-          <div className="PlayVideo">
-            {" "}
-            <p className="title has-text-white" onClick={HandleVideoClick}>
-              Watch thriller
-              <br />
-              <i className="fab fa-youtube"></i>
-            </p>{" "}
-          </div>
-        )}
-      </div>
+      <MovieOverview
+        showVideo={showVideo}
+        movieKey={movieKey}
+        isVideoVisible={isVideoVisible}
+        data={data}
+        onVideoClick={HandleVideoClick}
+        OnVideoClose={HandleVideoClose}
+      />
 
       <CarouselComponent
         movieType={KindsOfMovies.best2010}
