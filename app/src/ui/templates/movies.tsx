@@ -20,11 +20,19 @@ const HandleNoResult = () => {
 };
 
 const Component: React.FunctionComponent<IComponent> = (props: IComponent) => {
+  const HandleClick = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth"
+    });
+  };
+
   return (
     <div className={`${props.className} main`}>
       {props.data.map((item: IResponseVideoData) => {
         return item.poster_path != undefined ? (
-          <div className="ImageContainer" key={item.id}>
+          <div onClick={HandleClick} className="ImageContainer" key={item.id}>
             <Link to={`/movies-library/movie/${item.id}`}>
               <img
                 className="image"
