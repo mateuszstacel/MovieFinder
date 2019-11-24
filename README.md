@@ -28,7 +28,7 @@ So I would like to see rating for movie/tv show,
 
 As a user,
 I'm very keen to see thriller,
-So I would like to see thriller for movie/tv show,
+So I would like to see it for choosen movie/tv show,
 ```
 
 ## Running the app locally
