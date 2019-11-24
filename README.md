@@ -15,7 +15,7 @@ So I can switch between categories,
 
 As a user,
 Sometimes I'm not sure what I'm looking for,
-So I would like to see default movies/tv shows based on choosen category,
+So I would like to see default suggest movies/tv shows based on choosen category,
 
 As a user,
 I'm very keen to see more details,
