@@ -186,7 +186,7 @@ export const CarouselComponent = styled(PopularMoviesComponent)`
     }
   }
   .Movie {
-    width: 300px;
+    width: 250px;
 
     @media screen and (min-device-width: 300px) and (max-device-width: 845px) {
       width: 120px;
