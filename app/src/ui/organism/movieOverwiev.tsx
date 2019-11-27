@@ -36,10 +36,10 @@ const Component: React.FunctionComponent<IComponent> = (props: IComponent) => {
 
           <p className="score">
             {props.data.vote_average.toString()}
-            <i className="far fa-star has-text-warning"></i> from
+                      <i className="far fa-star has-text-warning"></i> out of {" "}
             {props.data.vote_count.toString()}
             <span> </span>
-            voutes
+            reviews
           </p>
 
           <label className="subtitleMovie has-text-white">

@@ -35,9 +35,9 @@ const Component: React.FunctionComponent<IComponent> = (props: IComponent) => {
 
           <p className="score">
             {props.data.vote_average.toString()}
-            <i className="far fa-star has-text-warning"></i> of<span> </span>
+            <i className="far fa-star has-text-warning"></i> out of<span> </span>
             {props.data.vote_count.toString()} <span> </span>
-            voutes
+            reviews
           </p>
 
           <br />
