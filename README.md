@@ -1,8 +1,18 @@
 
-#  Movie&TvShow Library created with React/Type-script
+#  mm
+
+## [Click here for live demo](https://movie-library-mateusz-stacel.azurewebsites.net/)
+![image](https://user-images.githubusercontent.com/42943907/69794610-7e638380-11c2-11ea-9ec1-4f3532ba923e.png)
+
+![image](https://user-images.githubusercontent.com/42943907/69794690-a6eb7d80-11c2-11ea-8a61-a9cae8e5cf37.png)
+
+![image](https://user-images.githubusercontent.com/42943907/69794740-b965b700-11c2-11ea-941b-26fdcd061d71.png)
+
+![image](https://user-images.githubusercontent.com/42943907/69794780-cb475a00-11c2-11ea-8387-406fb85f0dde.png)
 
 #### Simple responsive UI for searching The Movie/Tv Show using Database [movieDB](https://www.themoviedb.org/documentation/api​). 
-![image](https://user-images.githubusercontent.com/42943907/69501962-06673600-0f02-11ea-8042-656d76b1e549.png)
+
+
 ## User Stories
 
 ```
